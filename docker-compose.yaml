@@ -1,0 +1,14 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  delta:
+    #build: .
+    image: delta:0.0.1
+    command: python3 ./delta/manage.py runserver 0.0.0.0:8009
+    volumes:
+      - .:/delta
+    ports:
+      - "8009:8009"
+    depends_on:
+      - db
